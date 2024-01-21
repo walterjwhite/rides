@@ -1,0 +1,25 @@
+#!/bin/sh
+
+import git:git/data.app.sh
+import git:git/defaults
+import add.sh
+
+_configure $_CONF_INSTALL_CONFIG_PATH/git
+_git_init
+
+if [ "$#" -lt "4" ]; then
+	_error "Date, Index, Bike, and Distance are required (tags are optional)" 1
+fi
+
+_DATE=$(printf '%s' $1 | sed -e "s/\///g")
+_INDEX=$2
+_BIKE=$3
+_MILEAGE=$4
+_TAGS=$5
+
+_file
+_exists
+
+printf '%s|%s|%s|%s|%s\n' "$_DATE" "$_INDEX" "$_BIKE" "$_MILEAGE" "$_TAGS" >>$_FILE
+
+_git_save "add - $_DECADE/$_DATE,$_INDEX,$_BIKE" $_FILE

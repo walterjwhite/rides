@@ -1,4 +1,3 @@
-# date, index, bike, mileage
 {
     bucket = $1;
     A[bucket] = A[bucket] + $4;
@@ -10,4 +9,3 @@ END {
     }
 }
 
-# to sort these, simply pipe this to sort
